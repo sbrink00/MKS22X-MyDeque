@@ -19,14 +19,14 @@ public class MyDeque<E>{
   public String toString(){
     if (size == 0) return "[]";
     String output = "[";
-    for (int idx = start; idx < end + 1 && idx < data.length; idx ++){
-      //System.out.println("working");
-      output += data[idx] + ", ";
-    }
-    if (end < start){
-      for (int idx = 0; idx < end; idx ++){
+    if (start <= end){
+      for (int idx = start; idx < end + 1; idx ++){
         output += data[idx] + ", ";
       }
+    }
+    else{
+      for (int idx = start; idx < data.length; idx ++) output += data[idx] + ", ";
+      for (int idx = 0; idx < end + 1; idx ++) output += data[idx] + ", ";
     }
     return output;//.substring(0, output.length() - 2) + "]";
   }
