@@ -14,7 +14,10 @@ public class MyDeque<E>{
   }
 
   public int size(){return size;}
+
   public String toString(){
+    if (size == 0) return "[]";
+    //if (size == 1) return "[" + getFirst() + "]";
     String output = "[";
     for (int idx = start; idx < end && idx < data.length; idx ++){
       output += data[idx] + ", ";
@@ -24,7 +27,7 @@ public class MyDeque<E>{
         output += data[idx] + ", ";
       }
     }
-    return output.substring(output.length() - 2) + "]";
+    return output;
   }
 
   @SuppressWarnings("unchecked")
@@ -48,10 +51,35 @@ public class MyDeque<E>{
     if (size == data.length) resize();
     if (start != 0) data[start - 1] = element;
     else data[data.length - 1] = element;
+    if (start == 0) start = data.length - 1;
+    else start --;
+    size ++;
   }
-  //public void addLast(E element){ }
-  //public E removeFirst(){ }
-  //public E removeLast(){ }
-  //public E getFirst(){ }
-  //public E getLast(){ }
+
+  public void addLast(E element){
+    if (size == data.length) resize();
+    if (end != data.length - 1) data[end + 1] = element;
+    else data[0] = element;
+    if (end != data.length - 1) end ++;
+    else end = 0;
+    size ++;
+  }
+  public E removeFirst(){
+    E output = data[start];
+    if (start == data.length - 1) start = 0;
+    else start ++;
+    size --;
+    return output;
+  }
+
+  public E removeLast(){
+    E output = data[end];
+    if (end == 0) end = data.length - 1;
+    else end --;
+    size --;
+    return output;
+  }
+
+  public E getFirst() {return data[start];}
+  public E getLast() {return data[end];}
 }
