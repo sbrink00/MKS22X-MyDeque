@@ -28,24 +28,23 @@ public class MyDeque<E>{
       for (int idx = start; idx < data.length; idx ++) output += data[idx] + ", ";
       for (int idx = 0; idx < end + 1; idx ++) output += data[idx] + ", ";
     }
-    return output;//.substring(0, output.length() - 2) + "]";
+    return output.substring(0, output.length() - 2) + "]";
   }
 
   @SuppressWarnings("unchecked")
   private void resize(){
     E[] temp = (E[])new Object[data.length * 2];
     int i = 0;
-    for (int idx = start; idx < end + 1 && idx < data.length; idx ++){
-      temp[i] = data[idx];
-      i ++;
+    if (start <= end){
+      for (int idx = start; idx < end + 1; idx ++){temp[i] = data[idx]; i ++;}
     }
-    if (end < start){
-      for (int idx = 0; idx < end; idx ++){
-        temp[i] = data[idx];
-        i ++;
-      }
+    else{
+      for (int idx = start; idx < data.length; idx ++) {temp[i] = data[idx]; i ++;}
+      for (int idx = 0; idx < end + 1; idx ++) {temp[i] = data[idx]; i ++;}
     }
     data = temp;
+    start = 0;
+    end = i - 1;
   }
 
   public void addFirst(E element){
