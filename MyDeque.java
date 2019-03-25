@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<E>{
   public E[] data;
   public int size, start, end;
@@ -48,58 +49,78 @@ public class MyDeque<E>{
   }
 
   public void addFirst(E element){
-    if (size == data.length) resize();
-    if (size == 0){
-      data[0] = element;
-      start = 0; end = 0;
-      size ++;
-    }
+    if (element == null) throw new NullPointerException("This Deque does not take null objects");
     else{
-      if (start != 0){
-        data[start - 1] = element;
-        start --;
+      if (size == data.length) resize();
+      if (size == 0){
+        data[0] = element;
+        start = 0; end = 0;
+        size ++;
       }
       else{
-        data[data.length - 1] = element;
-        start = data.length - 1;
-      size ++;
+        if (start != 0){
+          data[start - 1] = element;
+          start --;
+          size ++;
+        }
+        else{
+          data[data.length - 1] = element;
+          start = data.length - 1;
+          size ++;
+        }
       }
     }
   }
 
   public void addLast(E element){
-    if (size == data.length) resize();
-    if (size == 0){
-      data[0] = element;
-      start = 0; end = 0;
-      size ++;
-    }
+    if (element == null) throw new NullPointerException("This Deque does not take null objects");
     else{
-      if (end != data.length - 1) data[end + 1] = element;
-      else data[0] = element;
-      if (end != data.length - 1) end ++;
-      else end = 0;
-      size ++;
+      if (size == data.length) resize();
+      if (size == 0){
+        data[0] = element;
+        start = 0; end = 0;
+        size ++;
+      }
+      else{
+        if (end != data.length - 1) data[end + 1] = element;
+        else data[0] = element;
+        if (end != data.length - 1) end ++;
+        else end = 0;
+        size ++;
+      }
     }
   }
+
   public E removeFirst(){
-    E output = data[start];
-    if (size == 1){start = -1; end = -1;}
-    else if (start == data.length - 1) start = 0;
-    else start ++;
-    size --;
-    return output;
+    if (size == 0) throw new NoSuchElementException("this list is empty");
+    else{
+      E output = data[start];
+      if (size == 1){start = -1; end = -1;}
+      else if (start == data.length - 1) start = 0;
+      else start ++;
+      size --;
+      return output;
+    }
   }
 
   public E removeLast(){
-    E output = data[start];
-    if (size == 1){start = -1; end = -1;}
-    else if (end == 0) end = data.length - 1;
-    else end --;
-    size --;
-    return output;
+    if (size == 0) throw new NoSuchElementException("this list is empty");
+    else{
+      E output = data[start];
+      if (size == 1){start = -1; end = -1;}
+      else if (end == 0) end = data.length - 1;
+      else end --;
+      size --;
+      return output;
+    }
   }
 
-  public E getFirst() {return data[start];}
-  public E getLast() {return data[end];}
+  public E getFirst() {
+    if (size == 0) throw new NoSuchElementException("this list is empty");
+    else return data[start];
+  }
+  public E getLast() {
+    if (size == 0) throw new NoSuchElementException("this list is empty");
+    else return data[end];
+  }
 }
