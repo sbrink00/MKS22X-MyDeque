@@ -84,15 +84,17 @@ public class MyDeque<E>{
   }
   public E removeFirst(){
     E output = data[start];
-    if (start == data.length - 1) start = 0;
+    if (size == 1){start = -1; end = -1;}
+    else if (start == data.length - 1) start = 0;
     else start ++;
     size --;
     return output;
   }
 
   public E removeLast(){
-    E output = data[end];
-    if (end == 0) end = data.length - 1;
+    E output = data[start];
+    if (size == 1){start = -1; end = -1;}
+    else if (end == 0) end = data.length - 1;
     else end --;
     size --;
     return output;
