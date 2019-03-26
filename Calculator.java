@@ -8,7 +8,6 @@ public class Calculator{
     System.out.println(eval("11 3 - 4 + 2.5 *"));
   }
 
-  @SuppressWarnings("unchecked")
   public static double eval(String s){
     String[] things = s.split(" ");
     //System.out.println(Arrays.toString(things));
