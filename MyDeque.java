@@ -1,4 +1,4 @@
-//1 2 3 4 5 + * - - failed
+//1 2 3 4 5 + * - - failed and adding many to front and removing many from back failed.
 import java.util.*;
 public class MyDeque<E>{
   private E[] data;
