@@ -1,3 +1,4 @@
+//1 2 3 4 5 + * - - failed
 import java.util.*;
 public class MyDeque<E>{
   private E[] data;
