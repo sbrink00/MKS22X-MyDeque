@@ -18,8 +18,8 @@ public class MyDeque<E>{
   public int size(){return size;}
 
   public String toString(){
-    if (size == 0) return "[]";
-    String output = "[";
+    if (size == 0) return "{}";
+    String output = "{";
     if (start <= end){
       for (int idx = start; idx < end + 1; idx ++){
         output += data[idx] + ", ";
@@ -29,7 +29,7 @@ public class MyDeque<E>{
       for (int idx = start; idx < data.length; idx ++) output += data[idx] + ", ";
       for (int idx = 0; idx < end + 1; idx ++) output += data[idx] + ", ";
     }
-    return output.substring(0, output.length() - 2) + "]";
+    return output.substring(0, output.length() - 2) + "}";
   }
 
   @SuppressWarnings("unchecked")
@@ -106,7 +106,7 @@ public class MyDeque<E>{
   public E removeLast(){
     if (size == 0) throw new NoSuchElementException("this list is empty");
     else{
-      E output = data[start];
+      E output = data[end];
       if (size == 1){start = -1; end = -1;}
       else if (end == 0) end = data.length - 1;
       else end --;
